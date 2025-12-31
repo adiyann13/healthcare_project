@@ -1,0 +1,1 @@
+** this project is about the diabetes health care dataset end to end data scince project **
