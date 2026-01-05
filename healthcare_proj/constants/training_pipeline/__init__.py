@@ -24,4 +24,15 @@ DATA_INGESTION_FEATURE_STORE:str = 'data_ingestion_feature_store'
 DATA_INGESTION_INGESTED_DATA:str = 'ingested'
 DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO:float = 0.2
 
+##data validation constants
+
+DATA_SCHEMA_FILE_PATH:str = os.path.join('data_schema' , 'schema.yaml')
+
+DATA_VALIDATION_DIR_NAME:str = 'data_validation'
+DATA_VALIDATION_VALID_DIR:str  = 'validated_data'
+DATA_VALIDATION_INVALID_DIR:str = 'invaled_data'
+DATA_VALIDATION_DRIFT_REPORT:str = 'data_drift'
+DATA_VALIDATION_FINAL_REPORT:str = 'report.yaml'
+
+
 
