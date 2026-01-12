@@ -50,9 +50,12 @@ class DataValidationConfig:
 class DataTransformationConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
         self.data_transformation_dir:str = os.path.join(training_pipeline_config.artifact_dir,training_pipeline.DATA_TRANSFORMATION_DIR_NAME)
-        self.data_transfromed_train_file_path:str =os.path.join(self.data_transformation_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA)
-        training_pipeline.TRAIN_FILE_NAME.replace('csv','npy')
-        self.data_transformed_test_file_path:str=os.path.join(self.data_transformation_dir,training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA)
-        training_pipeline.TEST_FILE_NAME.replace('csv','npy')
-        self.transformed_file_obj_paht:str = os.path.join(self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT, training_pipeline.PRE_PROCESSING_FILE_PATH)
+        self.data_transformed_train_file_path:str =os.path.join(self.data_transformation_dir, 'train_' + training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA + '.npy')
+        self.data_transformed_test_file_path:str=os.path.join(self.data_transformation_dir, 'test_' + training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA + '.npy')
+        self.transformed_file_obj_path:str = os.path.join(self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT, training_pipeline.PRE_PROCESSING_FILE_PATH)
 
+class ModelTrainerConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        self.model_trainer_dir:str = os.path.join(training_pipeline_config.artifact_dir,training_pipeline.MODEL_TRAINER_DIR_NAME)
+        self.trained_model_file_path:str =os.path.join(self.model_trainer_dir,training_pipeline.TRAINED_MODEL_NAME)
+        self.expected_accurac:float = training_pipeline.MODEL_EXPECTED_SCORE

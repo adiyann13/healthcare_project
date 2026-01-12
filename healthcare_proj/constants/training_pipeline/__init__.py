@@ -46,3 +46,9 @@ DATA_TRANSFORMATION_IMPUTER_PARAMS:dict ={
     'n_neighbors':3 , 
     'weights':'uniform',
 }
+
+
+MODEL_TRAINER_DIR_NAME:str = "model_trainer"
+TRAINED_MODEL_NAME :str = "model.pkl"
+TRAINING_DATA_TRAINED_MODEL:str = 'trained_model'
+MODEL_EXPECTED_SCORE:float = 0.65

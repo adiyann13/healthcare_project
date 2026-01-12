@@ -6,6 +6,8 @@ import json
 import sys
 import numpy as np
 import pickle
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score, precision_score, f1_score
 def read_yaml(file_path:str):
     try:
         with open(file_path, 'rb') as ymf:
@@ -29,7 +31,7 @@ def sve_array(file_pth:str , arr:np.array):
         dir_path = os.path.dirname(file_pth)
         os.makedirs(dir_path,exist_ok=True)
         with open(file_pth,'wb') as fl:
-            np.save(fl,'array')
+            np.save(fl, arr)
     except Exception as e:
         raise CustomException(e,sys)
 
@@ -42,6 +44,14 @@ def save_object(file_pth:str, obj:object):
     except Exception as e:
         raise CustomException(e,sys)
 
+def load_np_arrray(file_path:str)->np.array:
+    try:
+        with open(file_path ,"rb") as npfl:
+            return np.load(npfl)
+    except Exception as e:
+        raise CustomException(e,sys)
+
+
 def load_object(file_path:str)->object:
     try:
         if not os.path.exists(file_path):
@@ -52,6 +62,36 @@ def load_object(file_path:str)->object:
     except Exception as e:
         raise CustomException(e,sys)
 
+def evaluate_models(X_train, Y_train, X_test,Y_test,models,params):
+    try:
+        report:dict={}
+        fittted_models = {}
+
+        for i in range(len(list(models))):
+            model = list(models.values())[i]
+            model_name = list(models.keys())[i]
+            parameters = params[model_name]
+
+            gs = GridSearchCV(estimator=model, param_grid=parameters,cv=3)
+
+            gs.fit(X_train,Y_train)
+
+            model.set_params(**gs.best_params_)
+            model.fit(X_train,Y_train)
+            fittted_models[model_name]=model
+
+            y_train_pred = model.predict(X_train)
+            y_test_pred = model.predict(X_test)
+
+            train_model_scores = accuracy_score(Y_train,y_train_pred)
+            test_model_scores = accuracy_score(Y_test,y_test_pred)
+
+            report[model_name] = test_model_scores
+        
+        return report, fittted_models
+
+    except Exception as e:
+         raise CustomException(e,sys)
 
 
 

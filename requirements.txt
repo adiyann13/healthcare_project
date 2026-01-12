@@ -7,5 +7,8 @@ seaborn
 scikit-learn
 mlflow
 python-dotenv
-pickle
+#pickle
+dill
+mlflow
+dagshub
 #-e .

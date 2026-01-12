@@ -1,5 +1,5 @@
 from healthcare_proj.entity.config_entity import DataTransformationConfig
-from healthcare_proj.entity.artifact_entity import DataValidationArtifacts, DataTrransformationArtifact
+from healthcare_proj.entity.artifact_entity import DataValidationArtifacts, DataTransformationArtifact
 from healthcare_proj.exceptions.exception import CustomException
 from healthcare_proj.logging.logger import logging
 from healthcare_proj.constants.training_pipeline import TARGET_COL,DATA_TRANSFORMATION_IMPUTER_PARAMS
@@ -50,12 +50,12 @@ class DataTransfromation:
             train_arr = np.c_[preproceesed_train_df,np.array(dep_ftrs_train)]
             test_arr = np.c_[preprocessed_test_df,np.array(dep_ftrs_test)]
 
-            sve_array(self.data_transformation_config.data_transformed_test_file_path , arr=train_arr)
+            sve_array(self.data_transformation_config.data_transformed_train_file_path , arr=train_arr)
             sve_array(self.data_transformation_config.data_transformed_test_file_path,arr=test_arr)
-            save_object(self.data_transformation_config.transformed_file_obj_paht,obj =knn_preprocessor )
+            save_object(self.data_transformation_config.transformed_file_obj_path,obj =knn_preprocessor )
 
-            data_transformation_artifacts = DataTrransformationArtifact(transformd_obj_file_paht=self.data_transformation_config.transformed_file_obj_paht,
-                                                                        transformed_train_file_path=self.data_transformation_config.data_transfromed_train_file_path,
+            data_transformation_artifacts = DataTransformationArtifact(transformed_obj_file_path=self.data_transformation_config.transformed_file_obj_path,
+                                                                        transformed_train_file_path=self.data_transformation_config.data_transformed_train_file_path,
                                                                         transformed_test_file_path=self.data_transformation_config.data_transformed_test_file_path)
             
             return data_transformation_artifacts
