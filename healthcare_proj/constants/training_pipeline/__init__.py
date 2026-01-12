@@ -35,4 +35,14 @@ DATA_VALIDATION_DRIFT_REPORT:str = 'data_drift'
 DATA_VALIDATION_FINAL_REPORT:str = 'report.yaml'
 
 
+PRE_PROCESSING_FILE_PATH = 'preprocessed.pkl'
 
+DATA_TRANSFORMATION_DIR_NAME = 'Dta_transformation'
+DATA_TRANSFORMATION_TRANSFORMED_DATA:str = 'transformed_data'
+DATA_TRANSFORMATION_TRANSFORMED_OBJECT:str = 'transformed_obj'
+
+DATA_TRANSFORMATION_IMPUTER_PARAMS:dict ={
+    "missing_values": np.nan,
+    'n_neighbors':3 , 
+    'weights':'uniform',
+}

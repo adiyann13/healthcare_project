@@ -37,7 +37,7 @@ class DataIngestion:
             for dt in data:
                 if dt == '_id':
                     data.drop(['_id'], axis=1, inplace=True)
-            data.replace({'nan' , np.nan }, inplace=True)
+            data.replace('nan' , np.nan , inplace=True)
             return data
         except Exception as e:
             raise CustomException(e,sys)

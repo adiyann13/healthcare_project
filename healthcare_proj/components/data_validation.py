@@ -84,9 +84,9 @@ class DataValidation:
             data_validation_artifact = DataValidationArtifacts(
                 validation_status=drift_status,
                 valid_train_data_path=self.data_ingestion_artifact.training_file_path,
-                valid_test_data_path=self.data_ingestion_artifact.test_file_path,
-                invalid_train_path = None,
-                invalid_test_data = None,
+                valid_test_data_path=self.data_ingestion_artifact.testing_file_path,
+                invalid_train_data_path = None,
+                invalid_test_data_path = None,
                 drift_report_file_path=self.data_validation_config.data_drift_report,
             )
             

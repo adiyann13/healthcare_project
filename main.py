@@ -10,6 +10,10 @@ from healthcare_proj.components.data_validation import DataValidation
 import os
 from healthcare_proj.exceptions.exception import CustomException
 from healthcare_proj.logging.logger import logging
+from healthcare_proj.components.data_transfrmation import DataTransfromation
+from healthcare_proj.entity.artifact_entity import DataTrransformationArtifact
+from healthcare_proj.entity.config_entity import DataTransformationConfig
+import pymongo
 
 if __name__ == "__main__":
     trainingpipeline = TrainingPipelineConfig()
@@ -20,7 +24,12 @@ if __name__ == "__main__":
     logging.info("data ingestion completed")
 
 
-    datavalidationconfig = DataValidationConfig(training_pipeline_config=training_pipeline)
+    datavalidationconfig = DataValidationConfig(training_pipeline_config=trainingpipeline)
     datavalidation = DataValidation(dataingestionconfigartifact,datavalidationconfig )
     datavalidatyionartifacts = datavalidation.initiate_data_validation()
     print(dataingestionconfigartifact)
+
+    datatransformconfig = DataTransformationConfig(training_pipeline_config=trainingpipeline)
+    datatransform = DataTransfromation(data_validation_artifacts=datavalidatyionartifacts , data_transformation_config=datatransformconfig)
+    datatransformedadrtifacts = datatransform.initiate_data_transformation()
+    print(datatransformedadrtifacts)
